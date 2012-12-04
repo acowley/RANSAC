@@ -5,6 +5,9 @@
 -- herring" cluster of points that we would like to ignore. We use
 -- RANSAC to cut through the noise and fit a line to the point data
 -- set.
+-- 
+-- The important feature of RANSAC as applied here is that it manages
+-- to ignore the spurious (red herring) cluster centered at (0,8).
 module Main where
 import Control.Applicative
 import Control.Lens (view)
