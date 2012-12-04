@@ -14,7 +14,7 @@ license-file:        LICENSE
 author:              Anthony Cowley
 maintainer:          acowley@gmail.com
 copyright:           (c) Anthony Cowley 2012
-category:            Math
+category:            Math,Numerical
 build-type:          Simple
 cabal-version:       >=1.10
 extra-source-files:  tests/Perf.hs, tests/LinearFit.hs
