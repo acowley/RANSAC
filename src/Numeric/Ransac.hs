@@ -1,6 +1,6 @@
 {-# LANGUAGE BangPatterns #-}
--- | The "RANdom SAmple Consensus" (RANSAC) algorithm for estimating
--- the parameters of a mathematical model from a data set. See
+-- | The RANdom SAmple Consensus (RANSAC) algorithm for estimating the
+-- parameters of a mathematical model from a data set. See
 -- <http://en.wikipedia.org/wiki/RANSAC> for more information.
 module Numeric.Ransac (ransac) where
 import Control.Applicative
@@ -27,13 +27,14 @@ untilJust x = go
 -- | @ransac iter sampleSize agreePct fit residual goodFit pts@ draws
 -- @iter@ samples of size @sampleSize@ from @pts@. The @fit@ function
 -- is used to produce a model from each of these samples. The elements
--- of @pts@ that pass the @goodFit@ predicate with respect to this
--- model are identified as /inliers/, and used to update the
+-- of @pts@ whose residuals pass the @goodFit@ predicate with respect
+-- to this model are identified as /inliers/, and used to update the
 -- model. The model for which the size of the inliers set is at least
--- @agreePct@ and whose error over all points is minimal among all
--- sampled models is returned. If no acceptable model is found
--- (i.e. no model whose inliers were at least @agreePct@ percent of
--- the entire data set), 'Nothing' is returned.
+-- @agreePct@ percent of the entire data set and whose error over all
+-- points is minimal among all sampled models is returned. If no
+-- acceptable model is found (i.e. no model whose inliers were at
+-- least @agreePct@ percent of the entire data set), 'Nothing' is
+-- returned.
 ransac :: (V.Vector v a, V.Vector v d, Num d, Ord d) => 
           Int -> Int -> Float -> 
           (v a -> Maybe c) -> (c -> a -> d) -> (d -> Bool) -> 
