@@ -8,6 +8,9 @@
 -- 
 -- The important feature of RANSAC as applied here is that it manages
 -- to ignore the spurious (red herring) cluster centered at (0,8).
+--
+-- The Chart package is used to visualize the data and estimated
+-- model.
 module Main where
 import Control.Applicative
 import Control.Lens (view)
