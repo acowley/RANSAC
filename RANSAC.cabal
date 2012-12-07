@@ -17,7 +17,8 @@ copyright:           (c) Anthony Cowley 2012
 category:            Math,Numerical
 build-type:          Simple
 cabal-version:       >=1.10
-extra-source-files:  tests/Perf.hs, tests/LinearFit.hs, tests/SmokeTest.hs
+extra-source-files:  tests/Perf.hs, tests/LinearFit.hs, tests/SmokeTest.hs,
+                     .travis.yml, .gitignore
 
 source-repository head
   type: git
