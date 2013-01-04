@@ -54,9 +54,10 @@ ransac maxIter sampleSize agree fit residual goodFit pts = genModel >>= go 0
         genModel = do model <- untilJust (fit <$> sample)
                       let !errors = V.map (residual model) pts
                           !inliers = V.ifilter (const . goodFit . (errors !)) pts
-                          Just model' = fit inliers
-                          err = V.sum $ V.map (residual model') pts
-                      return (model', err, inliers)
+                      case fit inliers of
+                        Nothing -> genModel
+                        Just model' -> let err = V.sum $ V.map (residual model') pts
+                                       in return (model', err, inliers)
         n = V.length pts
         ratioInliers n' = fromIntegral n' / fromIntegral n
 {-# INLINE ransac #-}
