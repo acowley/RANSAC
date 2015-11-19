@@ -1,5 +1,5 @@
 name:                RANSAC
-version:             0.1.0.1
+version:             0.1.0.2
 synopsis:            The RANSAC algorithm for parameter estimation.
 description:         The RANdom SAmple Consensus (RANSAC) algorithm for
                      estimating the parameters of a mathematical model

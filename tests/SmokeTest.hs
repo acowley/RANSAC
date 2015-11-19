@@ -19,13 +19,15 @@ sq x = x * x
 
 -- | Fit a 2D line to a collection of 'Point's.
 fitLine :: Vector Point -> Maybe (V2 Float)
-fitLine pts = (!* b) <$> inv22 a
+fitLine pts = (!* b) <$> inv22' a
   where sx = V.sum $ V.map (view _x) pts
         a = V2 (V2 (V.sum (V.map (sq . view _x) pts)) sx)
                (V2 sx (fromIntegral (V.length pts)))
         b = V2 (V.sum (V.map F.product pts))
                (V.sum (V.map (view _y) pts))
-
+        inv22' m = let m' = inv22 m 
+                   in if F.any (F.any isNaN) m' then Nothing else Just m'
+                            
 -- | Compute the error of a 'Point' with respect to a hypothesized
 -- linear model.
 ptError :: V2 Float -> Point -> Float
